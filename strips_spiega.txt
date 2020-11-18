@@ -1,0 +1,47 @@
+
+
+   Geometry is simply a homogeneus volume filled with LAr.
+   Neutrinos generated at (0,0,0), directed along z
+   All particles except photons and unstable neutrals stopped
+   immediately after their generation.
+   Photon transport threshold at 50MeV
+   In the root file You'll find different trees, all friends.
+   The Header is similar to the one used for simple neutrino events,
+   with the addition of a variable with the total number of tracks
+   from the vertex (NumTracks) and an array keeping the correspondence
+   between particle type and track number (acc, coming from fortran
+   there is an offset.. IdTrack[0] is the type of the 1st particle
+   from vertex..) 
+   The Hits tree contain information for inelastic interactions, and
+   for crossing of boundaries (this one not useful here..I cloned from
+   another simulation..)
+   The inelastic int are in the variables with "Ine" in the name. For
+   each Int, up to  NIneHits, you have the information of the
+   position, type, time, and particle type originating the
+   interaction. You also have the number of generated
+   secondaries.
+   All secondaries in an event are stored in a list up  to
+   NTIneSec. Cross-reference between interaction and secondary is
+   provided by the index of inelastic hit  attached to the secondary,
+   and to the index of first secondary attached to the hit.
+   For all particles, you also get a "track number", this is
+   incremented each time a new particle is generated, and attached to
+   it. You also get the conection with the ancestor from the initial
+   interaction (IdParIne). This is meaningful only for nrutrino or
+   proton decay interactions.
+   The other tree, Stt, is not active at the moment. it can be used to
+   store energy depositions.
+   You can find variable names in FlukaHeader.h and FlukaHits.h in the
+   same area.
+
+   Interaction types :
+     101 = inelastic
+     102 = decay
+     217 = pair production
+     219 = Compton
+     221 = photoelectric
+     225 = Rayleigh
+      12 = Stopping
+Paola
+   
+
